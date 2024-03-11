@@ -1,37 +1,66 @@
 package overriding_overloading;
 
 class Shapes{
-	void shape(String a, int b, int c) {
-		System.out.println("The name of the shape is " + a);
+	void perimeter() {
+		return;
 	}
-	
-	
 }
 
-class Area extends Shapes{
+class Square extends Shapes{
+	int side;
+	Square(int side){
+		this.side = side;
+		System.out.println("The given shape is Square having " + side + " sides");
+	}
+	
 	@Override
-	void shape(String a, int b, int c) {
-		
-		if(a=="rectangle") {
-			System.out.println("The perimeter of " + a + "is" + 2*(b*c));
-		}
-		else if(a == "square") {
-			System.out.println("The perimeter of " + a + " is " + 4*c);
-		}
-		else {
-			System.out.println("The perimeter of " + a + " is " + 1/2*(b*c));
-		}
+	void perimeter() {
+		System.out.println("The perimeter of square is : " + 4*side);
 	}
+	
 }
 
-public class Main {
-	
-	public static void main(String[] args) {
-		Shapes first = new Shapes();
-		Area sec = new Area();
-		
-		first.shape("square", 5, 4);
-		sec.shape("square", 5, 4);
+class Circle extends Shapes{
+	int radius;
+	Circle(int radius){
+		this.radius = radius;
+		System.out.println("The given shape is circle with radius " + radius);
 	}
 	
+	@Override
+	void perimeter() {
+		System.out.println("The perimeter of circle is : " + 2*3.14*radius);
+	}
+	
+}
+
+class Triangle extends Shapes{
+	int one, two, three;
+	Triangle(int one, int two, int three){
+		this.one = one;
+		this.two = two;
+		this.three = three;
+		System.out.println("The given shape is triangle with sides of " + one + "," + two + "," + three);
+	}
+	
+	@Override
+	void perimeter() {
+		int tot = one+two+three;
+		System.out.println("The perimeter of triangle is : " + tot);
+	}
+	
+}
+
+
+public class Main{
+	public static void main(String[] args) {
+		Square a = new Square(5);
+		Circle b = new Circle(4);
+		Triangle c = new Triangle(2,5,4);
+		
+		a.perimeter();
+		b.perimeter();
+		c.perimeter();
+		
+	}
 }
